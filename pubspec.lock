@@ -420,10 +420,10 @@ packages:
     dependency: "direct main"
     description:
       name: mad2_home
-      sha256: d25ca8ae9aa52b414de857697c9ba47e2da0c66de0a2bdb9abbad0aaaaa57475
+      sha256: "96b7d3530ef2f7ea69f4dcdf378d128bfae4a468cbb4252d5fc9c12353417e4e"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
+    version: "1.1.2"
   mad2_leaderboard:
     dependency: transitive
     description:
