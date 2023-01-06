@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_bar_with_sheet/bottom_bar_with_sheet.dart';
 import 'package:mad2_browsepage/browse_page.dart';
+import 'package:mad2_home/homepage.dart';
+import 'package:mad2_browsepage/browse_page.dart';
+import 'package:mad2_shop/shop_page.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({Key? key}) : super(key: key);
@@ -24,11 +27,11 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        title: Row(
+        /*appBar: AppBar(
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          /*title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ElevatedButton(
@@ -44,54 +47,80 @@ class _NavigationState extends State<Navigation> {
               child: const Text('Toggle sheet'),
             ),
           ],
-        ),
-      ),
-      body: PageView(
-        controller: pageController,
-        children: [
-          Container(color: Colors.blue),
-          Container(color: Colors.yellow),
-          Container(color: Colors.green),
-          Container(color: Colors.red),
-        ],
-      ),
-      bottomNavigationBar: BottomBarWithSheet(
-        controller: _bottomBarController,
-        bottomBarTheme: const BottomBarTheme(
-          mainButtonPosition: MainButtonPosition.middle,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
-          ),
-          itemIconColor: Colors.grey,
-          itemTextStyle: TextStyle(
-            color: Colors.grey,
-            fontSize: 10.0,
-          ),
-          selectedItemTextStyle: TextStyle(
-            color: Colors.blue,
-            fontSize: 10.0,
-          ),
-        ),
-        onSelectItem: (index) => pageController.animateToPage(index,
-            duration: const Duration(milliseconds: 1000), curve: Curves.easeIn),
-        sheetChild: Center(
-          child: Text(
-            "QR Code Scanner Functionality",
-            style: TextStyle(
-              color: Colors.grey[600],
-              fontSize: 20,
-              fontWeight: FontWeight.w900,
+        ),*/
+        ),*/
+        extendBody: true,
+        body: PageView(
+          controller: pageController,
+          children: [
+            Container(child: HomePage()),
+            Container(
+              child: BrowsePage(),
             ),
-          ),
+            Container(
+              child: ShopPage(),
+            ),
+            Text("Hello"),
+          ],
         ),
-        items: const [
-          BottomBarWithSheetItem(icon: Icons.home, label: 'Home'),
-          BottomBarWithSheetItem(icon: Icons.search, label: 'Search'),
-          BottomBarWithSheetItem(icon: Icons.leaderboard, label: 'Leaderboard'),
-          BottomBarWithSheetItem(icon: Icons.explore, label: 'Explore'),
-        ],
-      ),
-    );
+        bottomNavigationBar: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30.0),
+            topRight: Radius.circular(30.0),
+          ),
+          child: BottomBarWithSheet(
+            controller: _bottomBarController,
+            mainActionButtonTheme: MainActionButtonTheme(
+              color: Color(0xFF13C9B3),
+            ),
+            bottomBarTheme: const BottomBarTheme(
+              heightOpened: 630,
+              heightClosed: 67,
+              mainButtonPosition: MainButtonPosition.middle,
+              itemIconColor: Color.fromARGB(157, 46, 58, 89),
+              itemIconSize: 27,
+              itemTextStyle: TextStyle(
+                color: Colors.grey,
+                fontSize: 10.0,
+              ),
+              selectedItemTextStyle: TextStyle(
+                color: Color(0xFF2E3A59),
+                fontSize: 10.0,
+              ),
+              selectedItemIconColor: Color(0xFF2E3A59),
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(241, 244, 248, 1),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+              ),
+            ),
+            onSelectItem: (index) => pageController.animateToPage(index,
+                duration: const Duration(milliseconds: 1),
+                curve: Curves.easeIn),
+            sheetChild: Center(
+              child: Text(
+                "QR Code Scanner Functionality",
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 27,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+            items: const [
+              BottomBarWithSheetItem(
+                icon: Icons.home_filled,
+              ),
+              BottomBarWithSheetItem(
+                icon: Icons.calendar_view_month_outlined,
+              ),
+              BottomBarWithSheetItem(
+                icon: Icons.shopping_basket_outlined,
+              ),
+              BottomBarWithSheetItem(
+                icon: Icons.explore,
+              ),
+            ],
+          ),
+        ));
   }
 }

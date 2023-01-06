@@ -11,6 +11,8 @@ dependencies:
 
   bottom_bar_with_sheet: ^2.4.0
   mad2_browsepage: ^1.3.7
+  mad2_home: ^1.1.1
+  mad2_shop: ^1.2.9
 
 dev_dependencies:
   flutter_test:
